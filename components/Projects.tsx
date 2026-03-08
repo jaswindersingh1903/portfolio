@@ -42,7 +42,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, hoveredIndex,
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className={`w-full h-full object-cover transition-all duration-700 ${isHovered ? 'scale-110 opacity-100' : 'scale-100 opacity-75'}`}
+            className={`w-full h-full transition-all duration-700 ${
+              project.imageContain ? 'object-contain p-6' : 'object-cover'
+            } ${isHovered ? 'scale-110 opacity-100' : 'scale-100 opacity-75'}`}
           />
         )}
         <div className={`absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-30' : 'opacity-60'}`} />

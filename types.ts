@@ -5,6 +5,7 @@ export interface Project {
   liveLink?: string;
   githubLink?: string;
   image?: string;
+  imageContain?: boolean;
 }
 
 export interface Experience {
