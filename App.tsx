@@ -1,4 +1,5 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
+import { LOADER_FACTS } from './loaderFacts';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -31,16 +32,34 @@ const SectionSkeleton: React.FC<{ id: string }> = ({ id }) => (
   </section>
 );
 
-const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden, progress }) => (
-  <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
-    <div className="initial-loader__panel">
-      <div className="initial-loader__meter" aria-label={`Loading ${progress}%`}>
-        <div className="initial-loader__meter-fill" style={{ width: `${progress}%` }} />
+const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden, progress }) => {
+  const fact = useMemo(() => LOADER_FACTS[Math.floor(Math.random() * LOADER_FACTS.length)], []);
+  const factIndex = useMemo(() => LOADER_FACTS.indexOf(fact) + 1, [fact]);
+
+  return (
+    <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
+      <div className="initial-loader__card">
+        <div className="initial-loader__card-header">
+          <span className="initial-loader__card-tag">// dev fact #{String(factIndex).padStart(2, '0')}</span>
+          <span className="initial-loader__card-dots">
+            <span /><span /><span />
+          </span>
+        </div>
+        <div className="initial-loader__card-body">
+          <span className="initial-loader__quote-mark">&ldquo;</span>
+          <p className="initial-loader__fact">{fact}</p>
+          <span className="initial-loader__quote-mark initial-loader__quote-mark--close">&rdquo;</span>
+        </div>
+        <div className="initial-loader__card-footer">
+          <div className="initial-loader__meter" aria-label={`Loading ${progress}%`}>
+            <div className="initial-loader__meter-fill" style={{ width: `${progress}%` }} />
+          </div>
+          <p className="initial-loader__text">{progress < 100 ? 'Loading…' : 'Ready'}</p>
+        </div>
       </div>
-      <p className="initial-loader__text">{progress}%</p>
     </div>
-  </div>
-);
+  );
+};
 
 const App: React.FC = () => {
   const [isBootComplete, setIsBootComplete] = useState(false);
@@ -66,7 +85,7 @@ const App: React.FC = () => {
 
     const updateProgress = () => {
       const elapsed = performance.now() - startedAt;
-      const nextProgress = Math.min(100, Math.max(1, Math.round((elapsed / 2000) * 100)));
+      const nextProgress = Math.min(100, Math.max(1, Math.round((elapsed / 2500) * 100)));
       if (active) {
         setLoaderProgress(nextProgress);
         if (nextProgress < 100) {
@@ -79,7 +98,7 @@ const App: React.FC = () => {
 
     const onReady = () => {
       const elapsed = performance.now() - startedAt;
-      const remaining = Math.max(0, 2000 - elapsed);
+      const remaining = Math.max(0, 2500 - elapsed);
 
       window.setTimeout(() => {
         if (active) {
@@ -178,9 +197,9 @@ const App: React.FC = () => {
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <main className="relative z-10">
           <Hero />
+          <Projects />
           <About />
           <Skills />
-          <Projects />
           <Experience />
           {isEducationMounted && (
             <Suspense fallback={<SectionSkeleton id="education" />}>

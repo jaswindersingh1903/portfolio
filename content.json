@@ -102,14 +102,14 @@
       "description": "Dental offices had no reliable way to find qualified staff on demand, and professionals had no modern platform to manage placements. I built the full-stack marketplace: an Angular frontend for job browsing and profile management, a Laravel REST API handling matching logic and authentication, and a MySQL schema supporting both temporary and permanent placement workflows.",
       "technologies": ["Angular", "Laravel", "MySQL", "PHP", "RESTful API"],
       "liveLink": "https://btgglobal.ca",
-      "image": "https://btgglobal.ca/wp-content/themes/dentalstaff/images/logo.png"
+      "image": "/assets/btg-global-logo.png"
     },
     {
       "title": "Patient Promoter",
-      "description": "Healthcare providers needed a reliable way to measure patient satisfaction without complex enterprise tooling. I built the full backend: RESTful API, authentication, a MySQL schema handling millions of records, and the survey engine that calculates Net Promoter Score in real time and triggers personalized follow-up emails.",
-      "technologies": ["JavaScript ES6", "PHP", "MySQL", "RESTful API"],
+      "description": "Clinics had no affordable way to measure patient loyalty or act on feedback in real time. I built the full platform in PHP and JavaScript — a RESTful API, secure authentication, a MySQL schema handling millions of survey records, and a scoring engine that calculates Net Promoter Score live and triggers automated follow-up emails to turn detractors into promoters.",
+      "technologies": ["PHP", "JavaScript", "MySQL", "RESTful API", "NPS"],
       "liveLink": "https://patientpromoter.com",
-      "image": "https://picsum.photos/600/400?random=12"
+      "image": "/assets/patient-promoter-logo.png"
     },
     {
       "title": "GetPlasma.in",
