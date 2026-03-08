@@ -30,16 +30,21 @@ const SectionSkeleton: React.FC<{ id: string }> = ({ id }) => (
   </section>
 );
 
-const InitialLoader: React.FC<{ hidden: boolean }> = ({ hidden }) => (
+const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden, progress }) => (
   <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
-    <div className="initial-loader__ring" />
-    <p className="initial-loader__text">Loading portfolio...</p>
+    <div className="initial-loader__panel">
+      <div className="initial-loader__meter" aria-label={`Loading ${progress}%`}>
+        <div className="initial-loader__meter-fill" style={{ width: `${progress}%` }} />
+      </div>
+      <p className="initial-loader__text">{progress}%</p>
+    </div>
   </div>
 );
 
 const App: React.FC = () => {
   const [isBootComplete, setIsBootComplete] = useState(false);
   const [isContactMounted, setIsContactMounted] = useState(false);
+  const [loaderProgress, setLoaderProgress] = useState(1);
   const { theme, toggleTheme } = useTheme();
 
   const ensureSectionMounted = (sectionId?: string) => {
@@ -51,12 +56,32 @@ const App: React.FC = () => {
 
   useEffect(() => {
     let active = true;
+    const startedAt = performance.now();
+    let frameId = 0;
+
+    const updateProgress = () => {
+      const elapsed = performance.now() - startedAt;
+      const nextProgress = Math.min(100, Math.max(1, Math.round((elapsed / 2000) * 100)));
+      if (active) {
+        setLoaderProgress(nextProgress);
+        if (nextProgress < 100) {
+          frameId = window.requestAnimationFrame(updateProgress);
+        }
+      }
+    };
+
+    frameId = window.requestAnimationFrame(updateProgress);
+
     const onReady = () => {
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, 2000 - elapsed);
+
       window.setTimeout(() => {
         if (active) {
+          setLoaderProgress(100);
           setIsBootComplete(true);
         }
-      }, 250);
+      }, remaining);
     };
 
     if (document.readyState === 'complete') {
@@ -67,6 +92,7 @@ const App: React.FC = () => {
 
     return () => {
       active = false;
+      window.cancelAnimationFrame(frameId);
       window.removeEventListener('load', onReady);
     };
   }, []);
@@ -139,26 +165,28 @@ const App: React.FC = () => {
 
   return (
     <div className={`app-shell theme-${theme} min-h-screen font-sans relative`}>
-      <InitialLoader hidden={isBootComplete} />
-      <CustomCursor />
-      <ScrollTrace />
-      <MobileTikTokScroll />
-      <MobileSectionNav />
-      <Header theme={theme} onToggleTheme={toggleTheme} />
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        {isContactMounted && (
-          <Suspense fallback={<SectionSkeleton id="contact" />}>
-            <Contact />
-          </Suspense>
-        )}
-      </main>
-      <ChatWidget />
-      <Footer />
+      <InitialLoader hidden={isBootComplete} progress={loaderProgress} />
+      <div className={`app-content ${isBootComplete ? 'app-content--visible' : ''}`}>
+        <CustomCursor />
+        <ScrollTrace />
+        <MobileTikTokScroll />
+        <MobileSectionNav />
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <main className="relative z-10">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          {isContactMounted && (
+            <Suspense fallback={<SectionSkeleton id="contact" />}>
+              <Contact />
+            </Suspense>
+          )}
+        </main>
+        <ChatWidget />
+        <Footer />
+      </div>
     </div>
   );
 };
