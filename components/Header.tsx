@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-200 border-b ${
+      className={`sticky top-0 w-full z-50 transition-all duration-200 border-b ${
         isScrolled
           ? 'bg-black/50 backdrop-blur-md border-white/10'
           : 'bg-transparent border-transparent'

@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-16">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
 
       {/* Background radial glow */}
       <div
