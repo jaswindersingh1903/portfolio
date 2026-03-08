@@ -14,6 +14,7 @@ import MobileSectionNav from './components/MobileSectionNav';
 import { useTheme } from './hooks/useTheme';
 import { smoothScrollToElement } from './utils/smoothScrollTo';
 
+const Education = lazy(() => import('./components/Education'));
 const Contact = lazy(() => import('./components/Contact'));
 
 const SectionSkeleton: React.FC<{ id: string }> = ({ id }) => (
@@ -43,15 +44,19 @@ const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden
 
 const App: React.FC = () => {
   const [isBootComplete, setIsBootComplete] = useState(false);
+  const [isEducationMounted, setIsEducationMounted] = useState(false);
   const [isContactMounted, setIsContactMounted] = useState(false);
   const [loaderProgress, setLoaderProgress] = useState(1);
   const { theme, toggleTheme } = useTheme();
 
   const ensureSectionMounted = (sectionId?: string) => {
     if (!sectionId) return;
-    if (sectionId !== 'contact') return;
-    void import('./components/Contact');
-    setIsContactMounted(true);
+    if (sectionId === 'education' || sectionId === 'contact') {
+      void import('./components/Education');
+      void import('./components/Contact');
+      setIsEducationMounted(true);
+      setIsContactMounted(true);
+    }
   };
 
   useEffect(() => {
@@ -97,6 +102,7 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Mount Education + Contact when Experience enters view
   useEffect(() => {
     const experienceEl = document.getElementById('experience');
     if (!experienceEl) return;
@@ -104,18 +110,16 @@ const App: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // n-1 behavior for contact only: load as experience becomes visible
           if (entry.isIntersecting) {
+            void import('./components/Education');
             void import('./components/Contact');
+            setIsEducationMounted(true);
             setIsContactMounted(true);
+            observer.disconnect();
           }
         });
       },
-      {
-        root: null,
-        rootMargin: '0px 0px -30% 0px',
-        threshold: 0.05,
-      }
+      { root: null, rootMargin: '0px 0px -30% 0px', threshold: 0.05 }
     );
 
     observer.observe(experienceEl);
@@ -178,6 +182,11 @@ const App: React.FC = () => {
           <Skills />
           <Projects />
           <Experience />
+          {isEducationMounted && (
+            <Suspense fallback={<SectionSkeleton id="education" />}>
+              <Education />
+            </Suspense>
+          )}
           {isContactMounted && (
             <Suspense fallback={<SectionSkeleton id="contact" />}>
               <Contact />
