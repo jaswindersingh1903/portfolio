@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/lock-content.cjs && vite build",
+    "content:lock": "node scripts/lock-content.cjs",
     "lint": "tsc --noEmit",
     "preview": "pnpm run build && wrangler dev",
     "deploy": "pnpm run build && wrangler deploy"
