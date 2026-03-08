@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Moon, Sun } from 'lucide-react';
 import type { ThemeMode } from '../hooks/useTheme';
+import { smoothScrollTo, smoothScrollToElement } from '../utils/smoothScrollTo';
 
 const NAV_ITEMS = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
@@ -73,13 +74,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
       const element = document.getElementById(sectionId);
       if (!element) return false;
 
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
+      smoothScrollToElement(element, 80, 760);
       return true;
     };
 
@@ -116,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div
           className="flex items-center gap-3 cursor-pointer group"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => smoothScrollTo(0, 760)}
         >
           <div className="relative flex items-center justify-center">
             {/* Pulsing Glow Effect */}
@@ -158,10 +153,11 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
           <button
             onClick={onToggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
             type="button"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
           </button>
           <a href="https://github.com" target="_blank" className="text-gray-400 hover:text-white transition-colors">
             <Github className="w-4 h-4" />

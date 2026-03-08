@@ -10,7 +10,9 @@ import ChatWidget from './components/ChatWidget';
 import ScrollTrace from './components/ScrollTrace';
 import CustomCursor from './components/CustomCursor';
 import MobileTikTokScroll from './components/MobileTikTokScroll';
+import MobileSectionNav from './components/MobileSectionNav';
 import { useTheme } from './hooks/useTheme';
+import { smoothScrollToElement } from './utils/smoothScrollTo';
 
 const Contact = lazy(() => import('./components/Contact'));
 
@@ -117,7 +119,7 @@ const App: React.FC = () => {
         tries += 1;
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          smoothScrollToElement(el, 80, 760);
           return;
         }
         if (tries < maxTries) window.setTimeout(tryScroll, 70);
@@ -141,6 +143,7 @@ const App: React.FC = () => {
       <CustomCursor />
       <ScrollTrace />
       <MobileTikTokScroll />
+      <MobileSectionNav />
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <main className="relative z-10">
         <Hero />

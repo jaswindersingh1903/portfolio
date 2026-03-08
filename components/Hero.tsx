@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, Download, Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import { PROFILE } from '../constants';
+import { smoothScrollToElement } from '../utils/smoothScrollTo';
 
 const SOCIAL = [
   { icon: Github,   label: 'GitHub',   href: 'https://github.com/jaswindersingh1903' },
@@ -23,10 +24,15 @@ const Hero: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToContact = () =>
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  const scrollToAbout = () =>
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) smoothScrollToElement(contactSection, 80, 800);
+  };
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) smoothScrollToElement(aboutSection, 80, 800);
+  };
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-16">

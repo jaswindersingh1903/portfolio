@@ -1,7 +1,7 @@
 /* ── Full-page Scroll Snap (all screen sizes) ────────────────── */
 html {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: auto; /* snap uses its own physics; smooth-scroll fights it */
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
 }
 
 .app-shell {
@@ -26,7 +26,7 @@ html {
 
 main > section {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 footer {
