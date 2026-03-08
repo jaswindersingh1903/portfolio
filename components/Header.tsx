@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github } from 'lucide-react';
+import { Menu, X, Github, Moon, Sun } from 'lucide-react';
+import type { ThemeMode } from '../hooks/useTheme';
 
 const NAV_ITEMS = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  theme: ThemeMode;
+  onToggleTheme: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -61,16 +67,35 @@ const Header: React.FC = () => {
 
   const scrollToSection = (id: string) => {
     setIsOpen(false);
-    const element = document.getElementById(id.toLowerCase());
-    if (element) {
+    const sectionId = id.toLowerCase();
+
+    const doScroll = () => {
+      const element = document.getElementById(sectionId);
+      if (!element) return false;
+
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
-    }
+      return true;
+    };
+
+    if (doScroll()) return;
+
+    window.dispatchEvent(new CustomEvent('app:ensure-section', { detail: { id: sectionId } }));
+
+    let attempts = 0;
+    const maxAttempts = 12;
+    const retry = () => {
+      attempts += 1;
+      if (doScroll() || attempts >= maxAttempts) return;
+      window.setTimeout(retry, 80);
+    };
+
+    window.setTimeout(retry, 50);
   };
 
   return (
@@ -130,6 +155,14 @@ const Header: React.FC = () => {
             </button>
           ))}
           <div className="h-4 w-[1px] bg-white/10 mx-2"></div>
+          <button
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className="text-gray-400 hover:text-white transition-colors"
+            type="button"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
           <a href="https://github.com" target="_blank" className="text-gray-400 hover:text-white transition-colors">
             <Github className="w-4 h-4" />
           </a>
@@ -149,6 +182,14 @@ const Header: React.FC = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-black border-b border-white/10 p-4 flex flex-col gap-4">
+          <button
+            onClick={onToggleTheme}
+            className="text-left text-sm py-2 transition-colors text-gray-400 hover:text-white flex items-center gap-2"
+            type="button"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+          </button>
           {NAV_ITEMS.map((item) => (
             <button
               key={item}

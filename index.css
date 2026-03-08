@@ -4,6 +4,26 @@ html {
   scroll-behavior: auto; /* snap uses its own physics; smooth-scroll fights it */
 }
 
+.app-shell {
+  background: #020202;
+  color: #ffffff;
+  transition: background-color 240ms ease, color 240ms ease;
+}
+
+.app-shell ::selection {
+  background: rgba(249, 115, 22, 0.3);
+  color: #ffffff;
+}
+
+.app-shell.theme-light {
+  background-color: #2f5b44;
+  background-image:
+    radial-gradient(1200px 600px at 18% -10%, rgba(221, 255, 236, 0.36), rgba(221, 255, 236, 0) 48%),
+    radial-gradient(1000px 520px at 85% 8%, rgba(185, 255, 214, 0.24), rgba(185, 255, 214, 0) 52%),
+    linear-gradient(160deg, #1f4734 0%, #3b6e53 46%, #5f8f71 100%);
+  color: #e8f6ed;
+}
+
 main > section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -28,4 +48,44 @@ main > section.section-snap-target.section-revealed {
     opacity  0.55s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: auto;
+}
+
+/* Initial page loader */
+.initial-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.98) 45%);
+  transition: opacity 420ms ease, visibility 420ms ease;
+}
+
+.initial-loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.initial-loader__ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 9999px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(249, 115, 22, 0.95);
+  animation: loader-spin 900ms linear infinite;
+  margin: 0 auto 14px;
+}
+
+.initial-loader__text {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
