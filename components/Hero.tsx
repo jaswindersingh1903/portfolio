@@ -84,8 +84,7 @@ const Hero: React.FC = () => {
 
           <a
             href={PROFILE.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Jaswinder_Singh_Resume.pdf"
             className="inline-flex h-11 items-center justify-center rounded-md border border-white/15 bg-white/5 px-8 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/30 active:scale-95 backdrop-blur-sm"
           >
             <Download className="mr-2 w-4 h-4" />
