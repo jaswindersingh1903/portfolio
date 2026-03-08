@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
+import { Menu, X, Github } from 'lucide-react';
 
 const NAV_ITEMS = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
@@ -7,12 +7,16 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      const doc = document.documentElement;
+      const progress = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+      setReadingProgress(Math.min(100, Math.max(0, progress)));
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -77,6 +81,13 @@ const Header: React.FC = () => {
           : 'bg-transparent border-transparent'
       }`}
     >
+      {/* Reading progress bar */}
+      <div className="absolute top-0 left-0 h-[2px] bg-white/10 w-full">
+        <div
+          className="h-full bg-gradient-to-r from-orange-500 via-white to-orange-500 transition-all duration-75"
+          style={{ width: `${readingProgress}%` }}
+        />
+      </div>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div
           className="flex items-center gap-3 cursor-pointer group"
