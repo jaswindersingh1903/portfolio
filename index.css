@@ -1,0 +1,31 @@
+/* ── Full-page Scroll Snap (all screen sizes) ────────────────── */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: auto; /* snap uses its own physics; smooth-scroll fights it */
+}
+
+main > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+footer {
+  scroll-snap-align: start;
+}
+
+/* Pre-animation state — added by JS to all sections except Hero */
+main > section.section-snap-target {
+  opacity: 0;
+  transform: translateY(60px);
+  will-change: opacity, transform;
+}
+
+/* Revealed state — added by IntersectionObserver when section enters view */
+main > section.section-snap-target.section-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity  0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: auto;
+}

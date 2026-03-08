@@ -2,107 +2,121 @@ import { Experience, Project, Skill } from './types';
 
 export const PROFILE = {
   name: "Jaswinder Singh",
-  title: "Full Stack Developer",
-  tagline: "Building scalable, high-performance applications with React, Node.js, and Cloud Architectures.",
-  about: "Full Stack Developer with 6+ years of experience specializing in React.js, Node.js, and the MERN stack. Skilled in building scalable, high-performance applications, developing and integrating RESTful APIs, and implementing microservices architecture. Proficient in cloud platforms (Azure, OpenShift, Docker) and security protocols (JWT, OAuth2.0, OIDC). Strong background in Agile development, CI/CD pipelines, and automated testing. Experienced in designing and delivering distributed systems with a focus on performance, security, and user experience.",
+  title: "Full Stack Developer & Agentic AI Engineer",
+  tagline: "I build production fullstack apps and the autonomous AI workflows that ship them 10x faster — React, Node.js, Python, and Claude Code.",
+  about: "I'm a fullstack developer based in Toronto with 7 years of shipping production software. For the past 3 years I've specialized in agentic AI development — building autonomous workflows using Claude Code and MCP that cut feature deployment time by 40%. I gravitate toward the hard middle layer: legacy migrations, real-time systems, and the seam between AI models and production infrastructure. I've shipped for healthcare, analytics, and SaaS, usually owning the full vertical from API design to cloud deployment. Right now I'm open to senior roles or contracts where the work is technically ambitious.",
   location: "Toronto, Canada",
   email: "jaswindersingh1903@gmail.com",
   phone: "+1(647-819-0355)",
-  resumeUrl: "/assets/Jaswinder_Singh_Resume.pdf" // Placeholder for actual file
+  resumeUrl: "/assets/Jaswinder_Singh_Resume.pdf"
 };
 
 export const SKILLS: Skill[] = [
-  { name: 'React / React.js', level: 95, category: 'Frontend' },
-  { name: 'Node.js', level: 90, category: 'Backend' },
+  { name: 'React.js', level: 95, category: 'Frontend' },
   { name: 'TypeScript', level: 85, category: 'Frontend' },
+  { name: 'Angular', level: 75, category: 'Frontend' },
+  { name: 'SASS', level: 80, category: 'Frontend' },
+  { name: 'Figma-to-Code', level: 85, category: 'Frontend' },
+  { name: 'Node.js / Express.js', level: 90, category: 'Backend' },
+  { name: 'Python / Django', level: 80, category: 'Backend' },
   { name: 'PHP / Laravel', level: 85, category: 'Backend' },
-  { name: 'AWS / Azure', level: 75, category: 'DevOps' },
-  { name: 'Docker / OpenShift', level: 75, category: 'DevOps' },
   { name: 'MySQL', level: 85, category: 'Backend' },
-  { name: 'WebSocket', level: 80, category: 'Backend' },
-  { name: 'Microservices', level: 80, category: 'Backend' },
-  { name: 'HTML / CSS', level: 95, category: 'Frontend' },
-  { name: 'Version Control (Git)', level: 90, category: 'Tools' },
-  { name: 'Agile Methodologies', level: 90, category: 'Tools' },
+  { name: 'WebSockets', level: 85, category: 'Backend' },
+  { name: 'RESTful APIs', level: 90, category: 'Backend' },
+  { name: 'Agentic AI / MCP', level: 90, category: 'AI' },
+  { name: 'Claude Code', level: 90, category: 'AI' },
+  { name: 'Microsoft Azure', level: 80, category: 'DevOps' },
+  { name: 'AWS', level: 75, category: 'DevOps' },
+  { name: 'Docker', level: 80, category: 'DevOps' },
+  { name: 'CI/CD Pipelines', level: 80, category: 'DevOps' },
+  { name: 'Redis', level: 75, category: 'Tools' },
+  { name: 'Webpack / Babel', level: 75, category: 'Tools' },
+  { name: 'Git', level: 95, category: 'Tools' },
+  { name: 'A/B Testing', level: 75, category: 'Tools' },
+  { name: 'Agile / Scrum', level: 90, category: 'Tools' },
 ];
 
 export const EXPERIENCE: Experience[] = [
   {
     id: '1',
-    company: 'Loom Analytics',
-    role: 'Sr. Software Engineer',
-    period: "Oct '22 - Present",
+    company: 'Health Info Platform (Thrive Guide)',
+    role: 'Software Engineer',
+    period: "Mar '25 – Present",
     description: [
-      'Integrated backend services with frontend applications, ensuring seamless data flow and functionality while reducing API response times by 15%, demonstrating a strong understanding of RESTful APIs.',
-      'Collaborated with UX designers in an Agile team to convert user-centric designs into functional web interfaces, enhancing user engagement by 20% and streamlining feedback iteration cycles by 15%.',
-      'Developed a dynamic user interface for a data visualization platform using React.js and PHP, enabling users to customize charts and graphs in real-time, leading to a 25% reduction in data analysis time.',
+      'Architecting the "Thrive Guide" platform using React.js and Python, leveraging AI-assisted coding to accelerate feature deployment by 40%.',
+      'Leading Agentic Application development by implementing Model Context Protocol (MCP) to integrate local documentation and data sources into autonomous AI workflows.',
+      'Translating complex Figma designs into high-fidelity Tailwind CSS components, ensuring 100% accessibility compliance.',
+      'Managing cloud-based deployment pipelines and ensuring seamless integration with RESTful APIs.',
     ],
   },
   {
     id: '2',
-    company: 'Classic Informatics',
+    company: 'Loom Analytics',
     role: 'Software Engineer',
-    period: "Sep '19 - Sep '21",
+    period: "Apr '22 – 2025",
     description: [
-      'Collected and documented user requirements, translating them into detailed logical and physical specifications, which reduced development cycle time by 20% and ensured alignment with stakeholder expectations.',
-      'Evaluated project specifications to design technology solutions that exceeded performance expectations, improving system efficiency by 25% and ensuring high-quality outcomes.',
-      'Collaborated cross-functionally with data scientists, business users, project managers, and engineers to implement effective solutions, improving project alignment by 20% and fostering a cohesive team environment.',
+      'Developed a dynamic data visualization dashboard using React.js, PHP, Django and Express.js, reducing analysis time by 25%.',
+      'Utilized Azure CI/CD pipelines and optimized Webpack configurations to reduce initial load times by 20%.',
+      'Collaborated in an Agile team to build Progressive Web Apps (PWAs) and browser extensions.',
+      'Participated in rigorous PR cycles and Git-based workflows, maintaining high code quality standards.',
     ],
   },
   {
     id: '3',
-    company: 'Enact E services',
-    role: 'PHP Developer',
-    period: "Jun '18 - Aug '19",
+    company: 'Classic Informatics',
+    role: 'Software Engineer',
+    period: "Sep '19 – Aug '21",
     description: [
-      'Researched, assessed, and implemented over 10 client feature requests to enhance internal content management systems and content delivery applications, improving system efficiency by 20% and aligning with user needs and business objectives.',
-      'Achieved significant improvements in the proprietary framework, resulting in a 70% boost in efficiency, which streamlined operations and reduced processing times.',
+      'Built full-stack solutions using React and Node.js/Express, reducing development cycle time by 20%.',
+      'Designed technology solutions that exceeded performance expectations, improving system efficiency by 25%.',
+      'Applied Agile methodologies and Git version control to manage project timelines in a fast-paced environment.',
     ],
   },
 ];
 
 export const PROJECTS: Project[] = [
   {
-    title: "Live Transcription with Closed Captions",
-    description: "Independently designed and implemented a real-time closed captioning and live transcription module. Significantly improved accessibility and enhanced user experience.",
-    technologies: ["React", "Node.js", "PHP", "Laravel", "Socket.IO", "Web-Socket"],
-    liveLink: "#", 
-    image: "https://picsum.photos/600/400?random=10" // Placeholder
+    title: "Autism Recommendation Tool",
+    description: "A legacy WordPress site was slow, hard to maintain, and failing to convert visitors. I orchestrated a full migration to React using Claude Code to systematically refactor components — achieving a 10x increase in page load speed via Webpack/Babel optimization and Redis caching, with A/B testing integrated to directly drive conversion growth.",
+    technologies: ["React", "Django", "Redis", "Webpack", "CI/CD", "A/B Testing"],
+    liveLink: "#",
+    image: "https://picsum.photos/600/400?random=14"
   },
   {
-    title: "BTG Global",
-    description: "Directed the development process utilizing Laravel and React. Integrated backend with frontend ensuring seamless data flow. Delivered front-end UX improvements and broad structural changes across codebases. Contributed to a 30% revenue increase by attracting 8 new clients.",
-    technologies: ["Laravel", "React.js", "Node.js", "MySQL", "HTML", "CSS"],
-    liveLink: "https://btgglobal.ca",
-    image: "https://picsum.photos/600/400?random=11" // Placeholder
+    title: "Live Transcription with Closed Captions",
+    description: "Live video platforms had no accessible option for deaf and hard-of-hearing users. I built a real-time closed captioning module from scratch — AI-powered speech-to-text over WebSockets with a low-latency Node.js backend. The feature attracted new enterprise clients and contributed to a 30% revenue increase.",
+    technologies: ["React", "Node.js", "WebSockets", "PHP", "AI Models"],
+    liveLink: "#",
+    image: "https://picsum.photos/600/400?random=10"
   },
   {
     title: "Patient Promoter",
-    description: "Designed a robust RESTful API using PHP. Created a user-friendly email marketing survey form integrated with PHP Laravel and MySQL to calculate Net Promoter Score (NPS). Enables real-time data collection and personalized patient follow-up.",
-    technologies: ["React", "Laravel", "MySQL", "RESTful API"],
+    description: "Healthcare providers needed a reliable way to measure patient satisfaction without complex enterprise tooling. I built the full backend: RESTful API, authentication, a MySQL schema handling millions of records, and the survey engine that calculates Net Promoter Score in real time and triggers personalized follow-up emails.",
+    technologies: ["JavaScript ES6", "PHP", "MySQL", "RESTful API"],
     liveLink: "https://patientpromoter.com",
-    image: "https://picsum.photos/600/400?random=12" // Placeholder
+    image: "https://picsum.photos/600/400?random=12"
   },
   {
-    title: "GetPlasma.in (Volunteer)",
-    description: "Engineered a responsive user interface using Bootstrap (30% improvement in user satisfaction). Deployed robust RESTful APIs in PHP handling over 15,000 hits and 6,000 registrations efficiently even on 2G networks.",
-    technologies: ["PHP", "MySQL", "CSS", "HTML", "Bootstrap"],
+    title: "GetPlasma.in",
+    description: "During COVID-19, plasma shortages were critical with no digital donor-recipient matching solution. I volunteered to build the platform from scratch — it handled 15,000+ API hits and 6,000 donor registrations, remaining fully functional on 2G mobile networks where most users were connecting.",
+    technologies: ["PHP", "MySQL", "HTML", "CSS", "Bootstrap"],
     liveLink: "https://getplasma.in",
-    image: "https://picsum.photos/600/400?random=13" // Placeholder
+    image: "https://picsum.photos/600/400?random=13"
   }
 ];
 
 export const EDUCATION = [
   {
-    institution: "I.K. Gujral Punjab Technical University Jalandhar - Punjab",
-    degree: "Bachelor of Technology, Computer Science",
-    year: ""
+    institution: "Centennial College",
+    degree: "Advanced Diploma, Software Engineering",
+    year: "2021 – 2023",
+    location: "Toronto, ON"
   },
   {
-    institution: "Centennial College",
-    degree: "Advanced Diplomas, Software Engineering",
-    year: "",
-    location: "Scarborough, ON"
+    institution: "Punjab Technical University",
+    degree: "Bachelor of Technology, Computer Science",
+    year: "2014 – 2018",
+    location: "India"
   }
 ];
 

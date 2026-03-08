@@ -56,12 +56,12 @@ const Hero: React.FC = () => {
 
         {/* Heading */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 pb-2 opacity-0 animate-fade-in-up delay-300">
-          Building the future <br className="hidden md:block" /> of the web.
+          Full stack, <br className="hidden md:block" /> front to back.
         </h1>
 
         {/* Description */}
         <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up delay-500">
-          I'm <span className="text-white font-medium">{PROFILE.name}</span>, a {PROFILE.title} focused on creating robust, high-performance applications with React, Node.js, and Cloud Architectures.
+          I'm <span className="text-white font-medium">{PROFILE.name}</span> — a {PROFILE.title} with 6 years shipping production apps across healthcare, analytics, and SaaS. I own the whole stack: API design, React frontends, cloud deployment, and everything in between.
         </p>
 
         {/* Buttons */}
