@@ -1,6 +1,6 @@
 {
   "lockfileVersion": 1,
-  "generatedAt": "2026-03-08T16:32:30.769Z",
+  "generatedAt": "2026-03-08T18:04:27.031Z",
   "contentVersion": "1.0.0",
   "sections": {
     "profile": {
@@ -61,14 +61,15 @@
       "checksum": "1c320dcbcf1b0164"
     },
     "projects": {
-      "count": 4,
+      "count": 5,
       "titles": [
         "Autism Recommendation Tool",
         "Live Transcription with Closed Captions",
+        "BTG Global — Dental Staffing Marketplace",
         "Patient Promoter",
         "GetPlasma.in"
       ],
-      "checksum": "e61ea01e210b16c2"
+      "checksum": "9f9e4fe06d0727fb"
     },
     "education": {
       "count": 2,

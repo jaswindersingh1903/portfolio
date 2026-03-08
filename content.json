@@ -88,7 +88,7 @@
       "description": "A legacy WordPress site was slow, hard to maintain, and failing to convert visitors. I orchestrated a full migration to React using Claude Code to systematically refactor components — achieving a 10x increase in page load speed via Webpack/Babel optimization and Redis caching, with A/B testing integrated to directly drive conversion growth.",
       "technologies": ["React", "Django", "Redis", "Webpack", "CI/CD", "A/B Testing"],
       "liveLink": "#",
-      "image": "https://picsum.photos/600/400?random=14"
+      "image": "https://images.unsplash.com/photo-1620136619922-f592abb9df44?w=600&h=400&fit=crop&q=80"
     },
     {
       "title": "Live Transcription with Closed Captions",
@@ -96,6 +96,13 @@
       "technologies": ["React", "Node.js", "WebSockets", "PHP", "AI Models"],
       "liveLink": "#",
       "image": "https://picsum.photos/600/400?random=10"
+    },
+    {
+      "title": "BTG Global — Dental Staffing Marketplace",
+      "description": "Dental offices had no reliable way to find qualified staff on demand, and professionals had no modern platform to manage placements. I built the full-stack marketplace: an Angular frontend for job browsing and profile management, a Laravel REST API handling matching logic and authentication, and a MySQL schema supporting both temporary and permanent placement workflows.",
+      "technologies": ["Angular", "Laravel", "MySQL", "PHP", "RESTful API"],
+      "liveLink": "https://btgglobal.ca",
+      "image": "https://btgglobal.ca/wp-content/themes/dentalstaff/images/logo.png"
     },
     {
       "title": "Patient Promoter",

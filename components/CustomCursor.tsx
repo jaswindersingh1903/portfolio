@@ -75,8 +75,10 @@ const CustomCursor: React.FC = () => {
   return (
     <>
       <style>{`
-        body, a, button, input, textarea, [role="button"] { 
-          cursor: none !important; 
+        body, a, button, input, textarea, select, label, summary,
+        [role="button"], [tabindex], [draggable],
+        .cursor-pointer, [class*="cursor-pointer"] {
+          cursor: none !important;
         }
       `}</style>
       

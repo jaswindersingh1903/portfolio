@@ -58,13 +58,67 @@ html {
 }
 
 .app-shell.theme-light {
-  background-color: #2f5b44;
+  background-color: #020c05;
   background-image:
-    radial-gradient(1200px 600px at 18% -10%, rgba(221, 255, 236, 0.36), rgba(221, 255, 236, 0) 48%),
-    radial-gradient(1000px 520px at 85% 8%, rgba(185, 255, 214, 0.24), rgba(185, 255, 214, 0) 52%),
-    linear-gradient(160deg, #1f4734 0%, #3b6e53 46%, #5f8f71 100%);
-  color: #e8f6ed;
+    radial-gradient(900px 450px at 15% -5%, rgba(0, 230, 118, 0.07), transparent 55%),
+    radial-gradient(700px 350px at 85% 5%, rgba(0, 188, 212, 0.05), transparent 55%),
+    radial-gradient(1200px 600px at 50% 100%, rgba(0, 180, 80, 0.04), transparent 60%);
+  color: #e8faf0;
 }
+
+/* ── Light theme overrides ─────────────────────────────────────── */
+
+/* Text color remapping: gray → green-tinted whites */
+[data-theme="light"] [class*="text-gray-300"] { color: #d1fae5 !important; }
+[data-theme="light"] [class*="text-gray-400"] { color: #a7f3d0 !important; }
+[data-theme="light"] [class*="text-gray-500"] { color: #6ee7b7 !important; }
+[data-theme="light"] [class*="text-gray-600"] { color: #34d399 !important; }
+
+/* Cards & surfaces: dark zinc → dark green glass */
+[data-theme="light"] [class*="bg-zinc-900"] { background-color: rgba(0, 22, 10, 0.75) !important; }
+[data-theme="light"] [class*="bg-zinc-800"] { background-color: rgba(0, 15, 7, 0.85) !important; }
+
+/* Section bg overlays: black → dark green */
+[data-theme="light"] [class*="bg-black/40"],
+[data-theme="light"] [class*="bg-black\/40"] { background-color: rgba(0, 18, 8, 0.45) !important; }
+[data-theme="light"] [class*="bg-black/20"],
+[data-theme="light"] [class*="bg-black\/20"] { background-color: rgba(0, 18, 8, 0.2) !important; }
+
+/* Borders: white-alpha → green-alpha */
+[data-theme="light"] [class*="border-white"] { border-color: rgba(0, 230, 118, 0.15) !important; }
+
+/* Header backdrop */
+[data-theme="light"] header { background-color: rgba(0, 15, 7, 0.6) !important; }
+
+/* Footer */
+[data-theme="light"] footer { background-color: #010805 !important; border-color: rgba(0, 230, 118, 0.12) !important; }
+
+/* Hero description text (text-gray-400 already covered above) */
+/* Nav active indicator: white underline → green */
+[data-theme="light"] .bg-white { background-color: #00e676 !important; }
+[data-theme="light"] [class*="bg-white/5"]  { background-color: rgba(0, 230, 118, 0.06) !important; }
+[data-theme="light"] [class*="bg-white/8"]  { background-color: rgba(0, 230, 118, 0.08) !important; }
+[data-theme="light"] [class*="bg-white/10"] { background-color: rgba(0, 230, 118, 0.10) !important; }
+[data-theme="light"] [class*="bg-white/20"] { background-color: rgba(0, 230, 118, 0.18) !important; }
+
+/* Heading gradients: keep white start, replace gray-500 end with green */
+[data-theme="light"] [class*="to-gray-500"] { --tw-gradient-to: #4ade80 !important; }
+
+/* Progress bar accent: orange → green */
+[data-theme="light"] [class*="from-orange-500"] { --tw-gradient-from: #00e676 !important; }
+[data-theme="light"] [class*="via-white"] { --tw-gradient-via: #a7f3d0 !important; }
+[data-theme="light"] [class*="to-orange-500"] { --tw-gradient-to: #00e676 !important; }
+
+/* Selection color */
+.app-shell.theme-light ::selection {
+  background: rgba(0, 230, 118, 0.3);
+  color: #e8faf0;
+}
+
+/* Scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track { background: #010805; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #1a4a2a; }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #00e676; }
 
 .app-content {
   opacity: 0;

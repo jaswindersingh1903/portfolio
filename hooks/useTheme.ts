@@ -10,7 +10,8 @@ const getInitialTheme = (): ThemeMode => {
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === 'dark' || stored === 'light') return stored;
 
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const hour = new Date().getHours();
+  return hour >= 18 || hour < 6 ? 'dark' : 'light';
 };
 
 export function useTheme() {

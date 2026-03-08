@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Moon, Sun } from 'lucide-react';
+import { Menu, X, Linkedin, Moon, Sun } from 'lucide-react';
 import type { ThemeMode } from '../hooks/useTheme';
 import { smoothScrollTo, smoothScrollToElement } from '../utils/smoothScrollTo';
 
@@ -159,8 +159,8 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
           </button>
-          <a href="https://github.com" target="_blank" className="text-gray-400 hover:text-white transition-colors">
-            <Github className="w-4 h-4" />
+          <a href="https://www.linkedin.com/in/devjaswindersingh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors">
+            <Linkedin className="w-4 h-4" />
           </a>
         </nav>
 
