@@ -74,20 +74,20 @@ const Hero: React.FC = () => {
 
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 opacity-0 animate-fade-in-up delay-700">
-          <button
+          {/* <button
             onClick={scrollToContact}
             className="group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-md bg-white px-8 font-medium text-black transition-all hover:bg-gray-100 active:scale-95"
           >
             <span className="mr-2">Start Collaborating</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </button> */}
 
           <a
             href={PROFILE.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
             download="Jaswinder_Singh_Resume.pdf"
-            className="inline-flex h-11 items-center justify-center rounded-md border border-white/15 bg-white/5 px-8 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/30 active:scale-95 backdrop-blur-sm"
+            className="group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-md bg-white px-8 font-medium text-black transition-all hover:bg-gray-100 active:scale-95"
           >
             <Download className="mr-2 w-4 h-4" />
             Download Resume
