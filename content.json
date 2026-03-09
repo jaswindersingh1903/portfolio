@@ -87,14 +87,14 @@
       "title": "Autism Recommendation Tool",
       "description": "A legacy WordPress site was slow, hard to maintain, and failing to convert visitors. I orchestrated a full migration to React using Claude Code to systematically refactor components — achieving a 10x increase in page load speed via Webpack/Babel optimization and Redis caching, with A/B testing integrated to directly drive conversion growth.",
       "technologies": ["React", "Django", "Redis", "Webpack", "CI/CD", "A/B Testing"],
-      "liveLink": "#",
+      "liveLink": "https://app.thriveguide.co/fe/free-course",
       "image": "/assets/autism-infinity-symbol.png"
     },
     {
       "title": "Live Transcription with Closed Captions",
       "description": "Live video platforms had no accessible option for deaf and hard-of-hearing users. I built a real-time closed captioning module from scratch — AI-powered speech-to-text over WebSockets with a low-latency Node.js backend. The feature attracted new enterprise clients and contributed to a 30% revenue increase.",
       "technologies": ["React", "Node.js", "WebSockets", "PHP", "AI Models"],
-      "liveLink": "#",
+      "liveLink": "https://claudio.loomanalytics.com/claudiolive",
       "image": "/assets/live-transcription-banner.png"
     },
     {
