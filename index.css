@@ -40,11 +40,9 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Full-page Scroll Snap (all screen sizes) ────────────────── */
-html {
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-}
+/* scroll-snap and scroll-behavior removed — they conflict with the custom
+   JS smoothScrollTo animation (competing scroll engines) and cause the
+   MobileSectionNav Next/Prev buttons to get stuck or land at wrong positions */
 
 .app-shell {
   background: #020202;
@@ -120,6 +118,57 @@ html {
 [data-theme="light"] ::-webkit-scrollbar-thumb { background: #1a4a2a; }
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #00e676; }
 
+/* ── Blue theme (navy + white, professional) ───────────────────── */
+
+.app-shell.theme-blue {
+  background-color: #050d1a;
+  background-image:
+    radial-gradient(900px 450px at 20% 10%, rgba(30, 80, 180, 0.12), transparent 60%),
+    radial-gradient(700px 350px at 80% 0%,  rgba(20, 60, 150, 0.10), transparent 55%),
+    radial-gradient(1000px 500px at 50% 100%, rgba(10, 50, 130, 0.08), transparent 60%);
+  color: #e8f0ff;
+}
+
+[data-theme="blue"] [class*="text-gray-300"] { color: #c7d9ff !important; }
+[data-theme="blue"] [class*="text-gray-400"] { color: #93b4f0 !important; }
+[data-theme="blue"] [class*="text-gray-500"] { color: #6090e0 !important; }
+[data-theme="blue"] [class*="text-gray-600"] { color: #4a7dd4 !important; }
+
+[data-theme="blue"] [class*="bg-zinc-900"] { background-color: rgba(5, 20, 55, 0.75) !important; }
+[data-theme="blue"] [class*="bg-zinc-800"] { background-color: rgba(8, 28, 65, 0.85) !important; }
+
+[data-theme="blue"] [class*="bg-black/40"],
+[data-theme="blue"] [class*="bg-black\/40"] { background-color: rgba(3, 12, 35, 0.45) !important; }
+[data-theme="blue"] [class*="bg-black/20"],
+[data-theme="blue"] [class*="bg-black\/20"] { background-color: rgba(3, 12, 35, 0.2) !important; }
+
+[data-theme="blue"] [class*="border-white"] { border-color: rgba(96, 144, 224, 0.18) !important; }
+
+[data-theme="blue"] header { background-color: rgba(5, 15, 45, 0.75) !important; }
+[data-theme="blue"] footer { background-color: #030b18 !important; border-color: rgba(60, 100, 220, 0.15) !important; }
+
+[data-theme="blue"] .bg-white               { background-color: #4a9eff !important; }
+[data-theme="blue"] [class*="bg-white/5"]   { background-color: rgba(60, 120, 240, 0.06) !important; }
+[data-theme="blue"] [class*="bg-white/8"]   { background-color: rgba(60, 120, 240, 0.08) !important; }
+[data-theme="blue"] [class*="bg-white/10"]  { background-color: rgba(60, 120, 240, 0.10) !important; }
+[data-theme="blue"] [class*="bg-white/20"]  { background-color: rgba(60, 120, 240, 0.18) !important; }
+
+[data-theme="blue"] [class*="to-gray-500"]  { --tw-gradient-to: #60a5fa !important; }
+[data-theme="blue"] [class*="to-white/40"]  { --tw-gradient-to: rgba(147, 197, 253, 0.4) !important; }
+
+[data-theme="blue"] [class*="from-orange-500"] { --tw-gradient-from: #3b82f6 !important; }
+[data-theme="blue"] [class*="via-white"]       { --tw-gradient-via: #bfdbfe !important; }
+[data-theme="blue"] [class*="to-orange-500"]   { --tw-gradient-to: #3b82f6 !important; }
+
+.app-shell.theme-blue ::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: #e8f0ff;
+}
+
+[data-theme="blue"] ::-webkit-scrollbar-track { background: #030b18; }
+[data-theme="blue"] ::-webkit-scrollbar-thumb { background: #1e3a6e; }
+[data-theme="blue"] ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
 .app-content {
   opacity: 0;
   transform: translateY(18px) scale(0.99);
@@ -133,19 +182,12 @@ html {
 
 .app-content--visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: none;
+  filter: none;
   pointer-events: auto;
 }
 
-main > section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
-
-footer {
-  scroll-snap-align: start;
-}
+/* scroll-snap-align removed — see note above */
 
 /* Pre-animation state — added by JS to all sections except Hero */
 main > section.section-snap-target {

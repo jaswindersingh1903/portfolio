@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Linkedin, Moon, Sun } from 'lucide-react';
+import { Menu, X, Linkedin, Moon, Sun, Briefcase } from 'lucide-react';
 import type { ThemeMode } from '../hooks/useTheme';
 import { smoothScrollTo, smoothScrollToElement } from '../utils/smoothScrollTo';
 
-const NAV_ITEMS = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
+const NAV_ITEMS = ['Projects', 'About', 'Skills', 'Experience', 'Education', 'Contact'];
 
 interface HeaderProps {
   theme: ThemeMode;
@@ -13,7 +13,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('home');
   const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
           const id = entry.target.id;
           // When 'home' intersects the top zone, clear active section
           if (id === 'home') {
-            setActiveSection('');
+            setActiveSection('home');
           } else {
              // Convert 'about' -> 'About'
              const sectionName = id.charAt(0).toUpperCase() + id.slice(1);
@@ -127,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border border-black"></span>
             </div>
           </div>
-          <span className="font-semibold text-sm text-gray-300 group-hover:text-white transition-colors">
+          <span className={`font-semibold text-sm transition-colors ${activeSection === 'home' ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
             Jaswinder Singh
           </span>
         </div>
@@ -156,8 +156,8 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
             type="button"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : theme === 'light' ? <Briefcase className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            <span>{theme === 'dark' ? 'Light Mode' : theme === 'light' ? 'Blue Mode' : 'Dark Mode'}</span>
           </button>
           <a href="https://www.linkedin.com/in/devjaswindersingh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors">
             <Linkedin className="w-4 h-4" />
@@ -183,8 +183,8 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
             className="text-left text-sm py-2 transition-colors text-gray-400 hover:text-white flex items-center gap-2"
             type="button"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : theme === 'light' ? <Briefcase className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? 'Light Mode' : theme === 'light' ? 'Blue Mode' : 'Dark Mode'}
           </button>
           {NAV_ITEMS.map((item) => (
             <button

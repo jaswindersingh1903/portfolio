@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { smoothScrollToElement } from '../utils/smoothScrollTo';
 
-const SECTION_ORDER = ['home', 'about', 'skills', 'projects', 'experience', 'contact'] as const;
+const SECTION_ORDER = ['home', 'projects', 'about', 'skills', 'experience', 'education', 'contact'] as const;
 
 const MobileSectionNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState<(typeof SECTION_ORDER)[number]>('home');
+  const frameRef = useRef<number>(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visibleEntry?.target.id) {
-          const id = visibleEntry.target.id as (typeof SECTION_ORDER)[number];
-          setActiveSection(id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-30% 0px -40% 0px',
-        threshold: [0.2, 0.5, 0.8],
+    const update = () => {
+      // The active section is the last one whose top edge is above 40% of the viewport.
+      // This is stable regardless of section height.
+      const threshold = window.scrollY + window.innerHeight * 0.4;
+      let best: (typeof SECTION_ORDER)[number] = SECTION_ORDER[0];
+      for (const id of SECTION_ORDER) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= threshold) best = id;
       }
-    );
+      setActiveSection(best);
+    };
 
-    const observedSections = SECTION_ORDER
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
+    const onScroll = () => {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = requestAnimationFrame(update);
+    };
 
-    observedSections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    update(); // run once on mount
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   const activeIndex = SECTION_ORDER.indexOf(activeSection);

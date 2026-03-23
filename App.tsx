@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 import ScrollTrace from './components/ScrollTrace';
 import CustomCursor from './components/CustomCursor';
+import Background from './components/Background';
 import MobileTikTokScroll from './components/MobileTikTokScroll';
 import MobileSectionNav from './components/MobileSectionNav';
 import { useTheme } from './hooks/useTheme';
@@ -191,6 +192,7 @@ const App: React.FC = () => {
       <InitialLoader hidden={isBootComplete} progress={loaderProgress} />
       <div className={`app-content ${isBootComplete ? 'app-content--visible' : ''}`}>
         <CustomCursor />
+        <Background />
         <ScrollTrace />
         <MobileTikTokScroll />
         <MobileSectionNav />
