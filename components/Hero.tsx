@@ -130,7 +130,7 @@ const TechCarousel: React.FC = () => {
         style={{ opacity: fading ? 0 : 1 }}
       >
         <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-mono">{label}</span>
-        <div className="flex flex-wrap items-center justify-center gap-2 max-w-xs sm:max-w-sm">
+        <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 max-w-xs sm:max-w-none">
           {items.map(tech => (
             <div
               key={tech.name}

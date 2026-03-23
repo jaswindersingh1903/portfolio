@@ -80,12 +80,42 @@ const SunSVG: React.FC = () => (
   </svg>
 );
 
+// ── Cloud SVG (blue mode) ─────────────────────────────────────────────────────
+const CloudSVG: React.FC = () => (
+  <svg width="64" height="48" viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
+    <defs>
+      <radialGradient id="cl-body" cx="38%" cy="30%" r="70%">
+        <stop offset="0%"   stopColor="#ffffff" />
+        <stop offset="60%"  stopColor="#bfdbfe" />
+        <stop offset="100%" stopColor="#93c5fd" />
+      </radialGradient>
+      <radialGradient id="cl-shine" cx="28%" cy="20%" r="50%">
+        <stop offset="0%"   stopColor="rgba(255,255,255,0.80)" />
+        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+      </radialGradient>
+    </defs>
+    {/* Shadow base */}
+    <ellipse cx="32" cy="43" rx="22" ry="4" fill="rgba(59,130,246,0.18)" />
+    {/* Cloud puffs — back to front */}
+    <ellipse cx="18" cy="32" rx="11" ry="9"  fill="url(#cl-body)" />
+    <ellipse cx="44" cy="30" rx="13" ry="11" fill="url(#cl-body)" />
+    <ellipse cx="32" cy="26" rx="16" ry="13" fill="url(#cl-body)" />
+    {/* Flat bottom */}
+    <rect x="10" y="33" width="44" height="9" rx="3" fill="url(#cl-body)" />
+    {/* Specular */}
+    <ellipse cx="24" cy="20" rx="7" ry="4.5" fill="url(#cl-shine)" />
+  </svg>
+);
+
 // ── ScrollTrace ───────────────────────────────────────────────────────────────
 const ScrollTrace: React.FC = () => {
   const [paths, setPaths]         = useState<string[]>([]);
   const [docHeight, setDocHeight] = useState(0);
-  const [isLight, setIsLight]     = useState(
+  const [isLight, setIsLight] = useState(
     () => document.documentElement.getAttribute('data-theme') === 'light'
+  );
+  const [isBlue, setIsBlue] = useState(
+    () => document.documentElement.getAttribute('data-theme') === 'blue'
   );
   const containerRef = useRef<HTMLDivElement>(null);
   const glowPathRefs = useRef<(SVGPathElement | null)[]>([]);
@@ -101,7 +131,9 @@ const ScrollTrace: React.FC = () => {
   // ── Watch data-theme attribute ───────────────────────────────────────────────
   useEffect(() => {
     const mo = new MutationObserver(() => {
-      setIsLight(document.documentElement.getAttribute('data-theme') === 'light');
+      const t = document.documentElement.getAttribute('data-theme');
+      setIsLight(t === 'light');
+      setIsBlue(t === 'blue');
     });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     return () => mo.disconnect();
@@ -176,8 +208,8 @@ const ScrollTrace: React.FC = () => {
           const clampedPos   = Math.max(0, Math.min(totalPathLen, baseBeamPosition));
           const pt           = leadPath.getPointAtLength(clampedPos);
 
-          // Centre the 52×52 (moon) or 56×56 (sun) icon on the path point
-          const half = isLight ? 28 : 26;
+          // Centre the icon: cloud 32×24, sun 56×56, moon 52×52
+          const half = isBlue ? 32 : isLight ? 28 : 26;
 
           // Slow orbit: small elliptical revolution around the path point
           const t        = performance.now();
@@ -201,14 +233,16 @@ const ScrollTrace: React.FC = () => {
 
     frameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frameId);
-  }, [paths, isLight]);
+  }, [paths, isLight, isBlue]);
 
   // Glow colour per theme
-  const glowFilter = isLight
+  const glowFilter = isBlue
+    ? 'blur(1px) drop-shadow(0 0 10px rgba(147,197,253,0.90)) drop-shadow(0 0 22px rgba(59,130,246,0.50)) drop-shadow(0 4px 8px rgba(0,0,0,0.40))'
+    : isLight
     ? 'blur(1.2px) drop-shadow(0 0 10px rgba(253,216,53,0.95)) drop-shadow(0 0 24px rgba(249,168,37,0.60)) drop-shadow(0 4px 8px rgba(0,0,0,0.35))'
     : 'blur(1.2px) drop-shadow(0 0 10px rgba(255,255,255,0.80)) drop-shadow(0 0 22px rgba(200,200,200,0.40)) drop-shadow(0 4px 8px rgba(0,0,0,0.65))';
 
-  const pivotPx = isLight ? '28px' : '26px';
+  const pivotPx = isBlue ? '32px' : isLight ? '28px' : '26px';
 
   // ── Render ───────────────────────────────────────────────────────────────────
   return (
@@ -260,7 +294,7 @@ const ScrollTrace: React.FC = () => {
             filter: glowFilter,
           }}
         >
-          {isLight ? <SunSVG /> : <MoonSVG />}
+          {isBlue ? <CloudSVG /> : isLight ? <SunSVG /> : <MoonSVG />}
         </div>
       </div>
     </div>
