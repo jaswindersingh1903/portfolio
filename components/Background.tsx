@@ -182,36 +182,35 @@ const BirdLayer: React.FC = () => {
   );
 };
 
-// ── Geometric shapes layer (blue mode) ───────────────────────────────────────
-const BlueLayer: React.FC = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    {[
-      { w: 320, h: 320, top: '8%',  left: '6%',  rx: '6px',  dur: 32, delay: 0,   opacity: 0.055 },
-      { w: 180, h: 180, top: '55%', left: '3%',  rx: '50%',  dur: 44, delay: -12, opacity: 0.045 },
-      { w: 260, h: 260, top: '20%', right: '5%', rx: '4px',  dur: 38, delay: -8,  opacity: 0.05  },
-      { w: 140, h: 140, top: '70%', right: '12%',rx: '50%',  dur: 28, delay: -20, opacity: 0.06  },
-      { w: 400, h: 2,   top: '45%', left: '15%', rx: '1px',  dur: 52, delay: -5,  opacity: 0.04  },
-      { w: 2,   h: 300, top: '10%', left: '55%', rx: '1px',  dur: 46, delay: -18, opacity: 0.035 },
-    ].map((s, i) => (
+// ── Cloud layer (blue mode) — blue & white clouds on navy ────────────────────
+const BLUE_CLOUDS: (CloudDef & { fill: string })[] = [
+  { top:  '5%', scale: 0.75, dur: 58, delay:   0, opacity: 0.90, fill: 'rgba(255,255,255,0.9)' },
+  { top: '16%', scale: 0.48, dur: 42, delay: -16, opacity: 0.75, fill: 'rgba(96,165,250,0.85)' },
+  { top: '28%', scale: 0.60, dur: 64, delay:  -8, opacity: 0.70, fill: 'rgba(255,255,255,0.85)' },
+  { top:  '8%', scale: 0.38, dur: 48, delay: -30, opacity: 0.60, fill: 'rgba(147,197,253,0.80)' },
+  { top: '20%', scale: 0.85, dur: 74, delay: -42, opacity: 0.85, fill: 'rgba(255,255,255,0.90)' },
+  { top: '38%', scale: 0.52, dur: 50, delay: -22, opacity: 0.65, fill: 'rgba(96,165,250,0.75)' },
+];
+
+const BlueCloudLayer: React.FC = () => (
+  <>
+    {BLUE_CLOUDS.map((c, i) => (
       <div
         key={i}
         style={{
-          position: 'absolute',
-          top: s.top,
-          left: 'left' in s ? s.left : undefined,
-          right: 'right' in s ? (s as { right: string }).right : undefined,
-          width: s.w,
-          height: s.h,
-          borderRadius: s.rx,
-          border: s.w > 10 && s.h > 10 ? '1px solid rgba(96,165,250,0.45)' : 'none',
-          background: s.w <= 10 || s.h <= 10 ? 'rgba(96,165,250,0.3)' : 'transparent',
-          opacity: s.opacity,
-          animation: `geo-float-${i % 3} ${s.dur}s ease-in-out ${s.delay}s infinite`,
+          position:   'absolute',
+          top:        c.top,
+          left:       0,
           willChange: 'transform',
+          animation:  `cloud-drift ${c.dur}s linear ${c.delay}s infinite`,
         }}
-      />
+      >
+        <div style={{ transform: `scale(${c.scale})`, transformOrigin: 'left center', opacity: c.opacity * 0.32 }}>
+          <CloudShape fill={c.fill} />
+        </div>
+      </div>
     ))}
-  </div>
+  </>
 );
 
 // ── Background ────────────────────────────────────────────────────────────────
@@ -280,24 +279,6 @@ const Background: React.FC = () => {
           0%   { transform: rotate(14deg);  }
           100% { transform: rotate(-20deg); }
         }
-        /* Blue theme — geometric shape drifts */
-        @keyframes geo-float-0 {
-          0%   { transform: translate(0px, 0px) rotate(0deg); }
-          33%  { transform: translate(18px, -14px) rotate(8deg); }
-          66%  { transform: translate(-10px, 20px) rotate(-5deg); }
-          100% { transform: translate(0px, 0px) rotate(0deg); }
-        }
-        @keyframes geo-float-1 {
-          0%   { transform: translate(0px, 0px) rotate(0deg); }
-          50%  { transform: translate(-22px, 16px) rotate(-10deg); }
-          100% { transform: translate(0px, 0px) rotate(0deg); }
-        }
-        @keyframes geo-float-2 {
-          0%   { transform: translate(0px, 0px); }
-          25%  { transform: translate(12px, 24px); }
-          75%  { transform: translate(-16px, -12px); }
-          100% { transform: translate(0px, 0px); }
-        }
       `}</style>
 
       {/* Imitation Game quote — barely visible watermark, bottom-right of hero */}
@@ -334,7 +315,7 @@ const Background: React.FC = () => {
             <BirdLayer />
           </>
         ) : isBlue ? (
-          <BlueLayer />
+          <BlueCloudLayer />
         ) : (
           <StarField />
         )}
