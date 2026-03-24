@@ -2,7 +2,7 @@
 
 A modern, interactive developer portfolio built with React, TypeScript, and Tailwind CSS. Features a custom scroll trace animation, parallax effects, and an AI-powered chat assistant backed by Google Gemini.
 
-**Live:** [jaswindersingh1903/portfolio](https://github.com/jaswindersingh1903/portfolio)
+**Live:** [[jaswindersingh1903/portfolio](https://github.com/jaswindersingh1903/portfolio](https://jaswinder.info/)
 
 ---
 
