@@ -9,7 +9,7 @@ const ChatWidget: React.FC = () => {
   if (!hasApiKey) return null;
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: `Hi there! I'm Jaswinder's AI assistant. Ask me anything about his experience, skills, or projects.` }
+    { role: 'model', text: `Hi there! I'm Jas's AI assistant. Ask me anything about his experience, skills, or projects.` }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

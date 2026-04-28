@@ -1,4 +1,4 @@
-# Jaswinder Singh — Portfolio
+# Jas — Portfolio
 
 A modern, interactive developer portfolio built with React, TypeScript, and Tailwind CSS. Features a custom scroll trace animation, parallax effects, and an AI-powered chat assistant backed by Google Gemini.
 
@@ -101,7 +101,7 @@ portfolio/
 
 ## Contact
 
-**Jaswinder Singh** — Full Stack Developer
+**Jas** — Full Stack Developer
 Toronto, Canada
 jaswindersingh1903@gmail.com
 [LinkedIn](https://linkedin.com/in/devjaswindersingh) · [GitHub](https://github.com/jaswindersingh1903)

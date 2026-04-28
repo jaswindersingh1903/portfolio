@@ -22,6 +22,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        signature: ['"Sacramento"', 'cursive'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -31,6 +32,7 @@ module.exports = {
         'fade-in': 'fadeIn 1.5s ease-out forwards',
         'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'logo-shimmer': 'logoShimmer 3.5s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -40,6 +42,10 @@ module.exports = {
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(40px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        logoShimmer: {
+          '0%, 100%': { backgroundPosition: '200% 50%' },
+          '50%': { backgroundPosition: '0% 50%' },
         },
       },
     },

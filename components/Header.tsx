@@ -128,7 +128,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
             </div>
           </div>
           <span className={`font-semibold text-sm transition-colors ${activeSection === 'home' ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
-            Jaswinder Singh
+            Jas
           </span>
         </div>
 

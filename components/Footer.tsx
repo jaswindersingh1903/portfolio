@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         <div className="flex items-center text-sm text-gray-500">
           <span>Built with React & Tailwind</span>
           <Heart className="w-4 h-4 text-red-500 mx-1 fill-current" />
-          <span>by Jaswinder</span>
+          <span>by Jas</span>
         </div>
       </div>
     </footer>

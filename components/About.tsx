@@ -1,6 +1,7 @@
 import React from 'react';
 import { PROFILE } from '../constants';
 import { Code, Server, GitBranch, Globe, Zap, Users, Brain } from 'lucide-react';
+import { YEARS_OF_EXPERIENCE } from '../utils/yearsOfExperience';
 
 const About: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ const About: React.FC = () => {
             <div className="p-6 rounded-2xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors backdrop-blur-md">
               <Globe className="w-6 h-6 text-purple-500 mb-3" />
               <h3 className="text-lg font-medium text-white mb-1">Full vertical ownership</h3>
-              <p className="text-sm text-gray-500">7 years across healthcare, analytics, and SaaS — API design, frontend, cloud deployment, and everything in between.</p>
+              <p className="text-sm text-gray-500">{YEARS_OF_EXPERIENCE} years across healthcare, analytics, and SaaS — API design, frontend, cloud deployment, and everything in between.</p>
             </div>
           </div>
         </div>

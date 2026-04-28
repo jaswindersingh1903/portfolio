@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
   "profile": {
-    "name": "Jaswinder Singh",
+    "name": "Jas",
     "title": "Full Stack Developer & Agentic AI Engineer",
     "tagline": "I build production fullstack apps and the autonomous AI workflows that ship them 10x faster — React, Node.js, Python, and Claude Code.",
-    "about": "I'm a fullstack developer based in Toronto with 7 years of shipping production software. For the past 3 years I've specialized in agentic AI development — building autonomous workflows using Claude Code and MCP that cut feature deployment time by 40%. I gravitate toward the hard middle layer: legacy migrations, real-time systems, and the seam between AI models and production infrastructure. I've shipped for healthcare, analytics, and SaaS, usually owning the full vertical from API design to cloud deployment. Right now I'm open to senior roles or contracts where the work is technically ambitious.",
+    "about": "I'm a fullstack developer based in Toronto with {years} years of shipping production software. For the past {aiYears} years I've specialized in agentic AI development — building autonomous workflows using Claude Code and MCP that cut feature deployment time by 40%. I gravitate toward the hard middle layer: legacy migrations, real-time systems, and the seam between AI models and production infrastructure. I've shipped for healthcare, analytics, and SaaS, usually owning the full vertical from API design to cloud deployment. Right now I'm open to senior roles or contracts where the work is technically ambitious.",
     "location": "Toronto, Canada",
     "email": "jaswindersingh1903@gmail.com",
     "phone": "+1(647-819-0355)",

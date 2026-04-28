@@ -1,6 +1,7 @@
 import React from 'react';
 import { EXPERIENCE } from '../constants';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { YEARS_OF_EXPERIENCE } from '../utils/yearsOfExperience';
 
 function HighlightedText({ text }: { text: string }) {
   const parts = text.split(/(\d+%|\d+x|\d+\+?(?:\s(?:years?|months?|clients?|features?|APIs?))?)/g);
@@ -157,7 +158,7 @@ const Experience: React.FC = () => {
             The Journey
           </h2>
           <p className="text-gray-500 text-sm">
-            7 years shipping production software across healthcare, analytics &amp; SaaS
+            {YEARS_OF_EXPERIENCE} years shipping production software across healthcare, analytics &amp; SaaS
           </p>
         </div>
 

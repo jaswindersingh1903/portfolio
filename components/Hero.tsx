@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Download, Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import { PROFILE } from '../constants';
 import { smoothScrollToElement } from '../utils/smoothScrollTo';
+import { YEARS_OF_EXPERIENCE } from '../utils/yearsOfExperience';
 
 // ── Tech stack carousel ────────────────────────────────────────────────────────
 type Tech = { name: string; abbr: string; color: string; isReact?: boolean };
@@ -259,7 +260,7 @@ const Hero: React.FC = () => {
 
         {/* Description */}
         <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up delay-500">
-          I'm <span className="text-white font-medium">{PROFILE.name}</span> — a {PROFILE.title} with 7 years shipping production apps across healthcare, analytics, and SaaS. I own the whole stack: API design, React frontends, cloud deployment, and everything in between.
+          I'm <span className="text-white font-medium">{PROFILE.name}</span> — a {PROFILE.title} with {YEARS_OF_EXPERIENCE} years shipping production apps across healthcare, analytics, and SaaS. I own the whole stack: API design, React frontends, cloud deployment, and everything in between.
         </p>
 
         {/* CTA buttons */}
