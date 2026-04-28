@@ -1,5 +1,4 @@
-import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react';
-import { LOADER_FACTS } from './loaderFacts';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -33,30 +32,34 @@ const SectionSkeleton: React.FC<{ id: string }> = ({ id }) => (
   </section>
 );
 
+const SIGNATURE_LOADER_LETTERS = ['J', 'A', 'S'];
+
 const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden, progress }) => {
-  const fact = useMemo(() => LOADER_FACTS[Math.floor(Math.random() * LOADER_FACTS.length)], []);
-  const factIndex = useMemo(() => LOADER_FACTS.indexOf(fact) + 1, [fact]);
+  const lettersShown = Math.min(
+    SIGNATURE_LOADER_LETTERS.length,
+    Math.floor((progress / 100) * SIGNATURE_LOADER_LETTERS.length) + (progress > 0 ? 1 : 0)
+  );
+  const isSignatureComplete = lettersShown >= SIGNATURE_LOADER_LETTERS.length;
 
   return (
     <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
-      <div className="initial-loader__card">
-        <div className="initial-loader__card-header">
-          <span className="initial-loader__card-tag">// dev fact #{String(factIndex).padStart(2, '0')}</span>
-          <span className="initial-loader__card-dots">
-            <span /><span /><span />
-          </span>
-        </div>
-        <div className="initial-loader__card-body">
-          <span className="initial-loader__quote-mark">&ldquo;</span>
-          <p className="initial-loader__fact">{fact}</p>
-          <span className="initial-loader__quote-mark initial-loader__quote-mark--close">&rdquo;</span>
-        </div>
-        <div className="initial-loader__card-footer">
-          <div className="initial-loader__meter" aria-label={`Loading ${progress}%`}>
-            <div className="initial-loader__meter-fill" style={{ width: `${progress}%` }} />
-          </div>
-          <p className="initial-loader__text">{progress < 100 ? 'Loading…' : 'Ready'}</p>
-        </div>
+      <div className="initial-loader__signature-stage">
+        <span
+          className={`initial-loader__signature ${isSignatureComplete ? 'initial-loader__signature--complete' : ''}`}
+          style={{ fontFamily: '"Sacramento", cursive' }}
+          aria-label="JAS"
+        >
+          {SIGNATURE_LOADER_LETTERS.map((letter, i) => (
+            <span
+              key={i}
+              className={`initial-loader__signature-letter ${i < lettersShown ? 'is-written' : ''}`}
+            >
+              {letter}
+            </span>
+          ))}
+          {!isSignatureComplete && <span aria-hidden className="initial-loader__signature-pen" />}
+        </span>
+        <span aria-hidden className={`initial-loader__signature-underline ${isSignatureComplete ? 'is-visible' : ''}`} />
       </div>
     </div>
   );
