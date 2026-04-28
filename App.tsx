@@ -32,35 +32,23 @@ const SectionSkeleton: React.FC<{ id: string }> = ({ id }) => (
   </section>
 );
 
-const SIGNATURE_LOADER_LETTERS = ['J', 'A', 'S'];
-
 const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden, progress }) => {
-  const lettersShown = Math.min(
-    SIGNATURE_LOADER_LETTERS.length,
-    Math.floor((progress / 100) * SIGNATURE_LOADER_LETTERS.length) + (progress > 0 ? 1 : 0)
-  );
-  const isSignatureComplete = lettersShown >= SIGNATURE_LOADER_LETTERS.length;
-
   return (
     <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
-      <div className="initial-loader__signature-stage">
-        <span
-          className={`initial-loader__signature ${isSignatureComplete ? 'initial-loader__signature--complete' : ''}`}
-          style={{ fontFamily: '"Sacramento", cursive' }}
-          aria-label="JAS"
-        >
-          {SIGNATURE_LOADER_LETTERS.map((letter, i) => (
-            <span
-              key={i}
-              className={`initial-loader__signature-letter ${i < lettersShown ? 'is-written' : ''}`}
-            >
-              {letter}
-            </span>
-          ))}
-          {!isSignatureComplete && <span aria-hidden className="initial-loader__signature-pen" />}
-        </span>
-        <span aria-hidden className={`initial-loader__signature-underline ${isSignatureComplete ? 'is-visible' : ''}`} />
-      </div>
+      <figure className="initial-loader__clipping">
+        <div className="initial-loader__clipping-frame">
+          <img
+            src="/assets/jas-newspaper-feature.png"
+            alt="Times of India feature on Jaswinder Singh and getplasma.in"
+            className="initial-loader__clipping-img"
+            draggable={false}
+          />
+        </div>
+        <figcaption className="initial-loader__clipping-caption">
+          <span>Times of India · 2020</span>
+          <span className="initial-loader__clipping-progress">{progress}%</span>
+        </figcaption>
+      </figure>
     </div>
   );
 };
