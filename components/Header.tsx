@@ -5,6 +5,51 @@ import { smoothScrollTo, smoothScrollToElement } from '../utils/smoothScrollTo';
 
 const NAV_ITEMS = ['Projects', 'About', 'Skills', 'Experience', 'Education', 'Contact'];
 
+const SIGNATURE_LETTERS = ['J', 'A', 'S'];
+const STROKE_DELAY_MS = 380;
+
+const SignatureLogo: React.FC<{ active: boolean }> = ({ active }) => {
+  const [strokeIndex, setStrokeIndex] = useState(0);
+
+  useEffect(() => {
+    if (strokeIndex >= SIGNATURE_LETTERS.length) return;
+    const t = setTimeout(() => setStrokeIndex((i) => i + 1), STROKE_DELAY_MS);
+    return () => clearTimeout(t);
+  }, [strokeIndex]);
+
+  const isComplete = strokeIndex >= SIGNATURE_LETTERS.length;
+
+  return (
+    <span
+      className={`font-signature text-3xl leading-none transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 inline-block origin-left -mt-1 relative ${
+        active
+          ? 'text-white drop-shadow-[0_1px_8px_rgba(255,255,255,0.35)]'
+          : 'text-gray-200 group-hover:text-white'
+      }`}
+      style={{ fontFamily: '"Sacramento", cursive' }}
+    >
+      {SIGNATURE_LETTERS.map((letter, i) => (
+        <span
+          key={i}
+          className="inline-block transition-all duration-300 ease-out"
+          style={{
+            opacity: i < strokeIndex ? 1 : 0,
+            transform: i < strokeIndex ? 'translateY(0)' : 'translateY(4px)',
+          }}
+        >
+          {letter}
+        </span>
+      ))}
+      {!isComplete && (
+        <span
+          aria-hidden
+          className="inline-block w-[2px] h-6 bg-white align-middle ml-0.5 animate-pulse"
+        />
+      )}
+    </span>
+  );
+};
+
 interface HeaderProps {
   theme: ThemeMode;
   onToggleTheme: () => void;
@@ -127,9 +172,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 border border-black"></span>
             </div>
           </div>
-          <span className={`font-semibold text-sm transition-colors ${activeSection === 'home' ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
-            Jas
-          </span>
+          <SignatureLogo active={activeSection === 'home'} />
         </div>
 
         {/* Desktop Menu */}
