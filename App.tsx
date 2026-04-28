@@ -36,6 +36,14 @@ const InitialLoader: React.FC<{ hidden: boolean; progress: number }> = ({ hidden
   return (
     <div className={`initial-loader ${hidden ? 'initial-loader--hidden' : ''}`} aria-hidden={hidden}>
       <figure className="initial-loader__clipping">
+        <header className="initial-loader__clipping-heading">
+          <h2 className="initial-loader__clipping-title">
+            Featured in <em>The Times of India</em>
+          </h2>
+          <p className="initial-loader__clipping-subtitle">
+            The team getplasma.in is an online platform which will help both the Patients &amp; Donar&rsquo;s to connect and help each other during these unprecedented times.
+          </p>
+        </header>
         <div className="initial-loader__clipping-frame">
           <img
             src="/assets/jas-newspaper-feature.png"

@@ -299,6 +299,34 @@ main > section.section-snap-target.section-revealed {
   margin: 0;
 }
 
+.initial-loader__clipping-heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.initial-loader__clipping-title {
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #f5f5f5;
+  margin: 0 0 0.45rem;
+}
+
+.initial-loader__clipping-title em {
+  font-style: italic;
+  color: rgba(249, 115, 22, 0.95);
+  font-weight: 700;
+}
+
+.initial-loader__clipping-subtitle {
+  font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 auto;
+  max-width: 60ch;
+}
+
 .initial-loader__clipping-frame {
   position: relative;
   width: 100%;
